@@ -166,13 +166,39 @@ html, body {
     }
 }
 
-/* Robot Container */
-.robot-container {
+/* Robot and Enter Button Container - Centered on screen */
+.robot-enter-container {
     position: absolute;
-    left: 5%;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Robot Platform Glow */
+.robot-platform {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 60px;
+    background: radial-gradient(ellipse at center, rgba(255, 107, 53, 0.4) 0%, rgba(255, 107, 53, 0.1) 40%, transparent 70%);
+    border-radius: 50%;
+    animation: platformGlow 2s ease-in-out infinite;
+}
+
+@keyframes platformGlow {
+    0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+
+.robot-enter-container .enter-btn {
+    margin-left: 0;
 }
 
 .robot {
@@ -180,6 +206,7 @@ html, body {
     width: 120px;
     height: 200px;
     animation: robotFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(255, 107, 53, 0.5));
 }
 
 @keyframes robotFloat {
@@ -195,26 +222,28 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    filter: drop-shadow(0 0 10px var(--primary-orange));
 }
 
 .antenna-ball {
-    width: 16px;
-    height: 16px;
-    background: var(--primary-orange);
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(145deg, #ffaa00, var(--primary-orange));
     border-radius: 50%;
-    box-shadow: 0 0 20px var(--primary-orange);
+    box-shadow: 0 0 25px var(--primary-orange), 0 0 50px rgba(255, 107, 53, 0.5);
     animation: antennaBlink 2s ease-in-out infinite;
 }
 
 @keyframes antennaBlink {
-    0%, 90%, 100% { opacity: 1; box-shadow: 0 0 20px var(--primary-orange); }
-    95% { opacity: 0.5; box-shadow: 0 0 5px var(--primary-orange); }
+    0%, 90%, 100% { opacity: 1; box-shadow: 0 0 25px var(--primary-orange), 0 0 50px rgba(255, 107, 53, 0.5); }
+    95% { opacity: 0.5; box-shadow: 0 0 10px var(--primary-orange); }
 }
 
 .antenna-stick {
-    width: 4px;
-    height: 25px;
-    background: linear-gradient(to bottom, var(--primary-orange), #666);
+    width: 5px;
+    height: 28px;
+    background: linear-gradient(to bottom, var(--primary-orange), #888);
+    border-radius: 3px;
 }
 
 .robot-head {
@@ -222,29 +251,30 @@ html, body {
     top: 35px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 70px;
-    background: linear-gradient(145deg, #3a3a5c, #2a2a4c);
-    border-radius: 20px 20px 30px 30px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    width: 85px;
+    height: 75px;
+    background: linear-gradient(145deg, #4a4a7c, #3a3a5c);
+    border-radius: 22px 22px 32px 32px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .robot-eyes {
     display: flex;
-    gap: 20px;
+    gap: 22px;
 }
 
 .eye {
-    width: 18px;
-    height: 18px;
-    background: #00ffff;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(145deg, #00ffff, #00cccc);
     border-radius: 50%;
-    box-shadow: 0 0 15px #00ffff, inset 0 0 10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px #00ffff, 0 0 40px rgba(0, 255, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.5);
     animation: eyeBlink 4s ease-in-out infinite;
 }
 
@@ -254,39 +284,40 @@ html, body {
 }
 
 .robot-mouth {
-    width: 30px;
-    height: 8px;
-    background: #00ffff;
-    border-radius: 4px;
-    box-shadow: 0 0 10px #00ffff;
+    width: 35px;
+    height: 10px;
+    background: linear-gradient(145deg, #00ffff, #00aaaa);
+    border-radius: 5px;
+    box-shadow: 0 0 15px #00ffff, 0 0 30px rgba(0, 255, 255, 0.3);
 }
 
 .robot-body {
     position: absolute;
-    top: 110px;
+    top: 112px;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
-    height: 80px;
-    background: linear-gradient(145deg, #3a3a5c, #2a2a4c);
-    border-radius: 15px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    width: 75px;
+    height: 85px;
+    background: linear-gradient(145deg, #4a4a7c, #3a3a5c);
+    border-radius: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .body-panel {
     display: flex;
-    gap: 8px;
+    gap: 10px;
 }
 
 .panel-light {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
-    background: var(--primary-orange);
-    box-shadow: 0 0 10px var(--primary-orange);
+    background: linear-gradient(145deg, #ffaa00, var(--primary-orange));
+    box-shadow: 0 0 15px var(--primary-orange), 0 0 30px rgba(255, 107, 53, 0.4);
     animation: panelPulse 1.5s ease-in-out infinite;
 }
 
@@ -300,11 +331,12 @@ html, body {
 
 .robot-arm {
     position: absolute;
-    width: 20px;
-    height: 60px;
-    background: linear-gradient(145deg, #3a3a5c, #2a2a4c);
-    border-radius: 10px;
+    width: 22px;
+    height: 65px;
+    background: linear-gradient(145deg, #4a4a7c, #3a3a5c);
+    border-radius: 12px;
     top: 115px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .robot-arm.left {
@@ -328,25 +360,26 @@ html, body {
 /* Speech Bubble */
 .speech-bubble {
     position: absolute;
-    top: -30px;
-    left: 100px;
-    background: white;
+    top: -50px;
+    left: 110px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
     color: var(--primary-dark);
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 12px 24px;
+    border-radius: 25px;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     opacity: 0;
     animation: speechAppear 1s ease-out 1.5s forwards;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .speech-bubble::before {
     content: '';
     position: absolute;
-    left: -10px;
+    left: -12px;
     top: 50%;
     transform: translateY(-50%);
-    border: 10px solid transparent;
+    border: 12px solid transparent;
     border-right-color: white;
     border-left: none;
 }
@@ -367,27 +400,31 @@ html, body {
 
 .enter-btn {
     position: relative;
-    padding: 25px 80px;
+    padding: 28px 90px;
     font-family: 'Orbitron', sans-serif;
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 900;
     color: white;
     background: linear-gradient(135deg, var(--primary-orange), var(--primary-red));
     border: none;
-    border-radius: 15px;
+    border-radius: 18px;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease;
     box-shadow: 
-        0 10px 30px rgba(255, 107, 53, 0.4),
-        0 0 50px rgba(255, 107, 53, 0.2);
+        0 15px 40px rgba(255, 107, 53, 0.5),
+        0 0 60px rgba(255, 107, 53, 0.3),
+        inset 0 2px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .enter-btn:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
     box-shadow: 
-        0 15px 40px rgba(255, 107, 53, 0.5),
-        0 0 70px rgba(255, 107, 53, 0.3);
+        0 20px 50px rgba(255, 107, 53, 0.6),
+        0 0 80px rgba(255, 107, 53, 0.4),
+        0 0 120px rgba(255, 107, 53, 0.2),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3);
 }
 
 .enter-btn:active {
@@ -406,7 +443,7 @@ html, body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
     animation: btnGlow 2s ease-in-out infinite;
 }
 
@@ -430,6 +467,23 @@ html, body {
 .enter-btn:active .btn-ripple {
     width: 300px;
     height: 300px;
+}
+
+/* Neon border effect */
+.enter-btn::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(135deg, #ff9500, #ff6b35, #e63946, #ff6b35, #ff9500);
+    border-radius: 21px;
+    z-index: -1;
+    opacity: 0.7;
+    animation: borderGlow 3s linear infinite;
+}
+
+@keyframes borderGlow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
 }
 
 /* ============================================
