@@ -37,8 +37,8 @@
             <span class="bg-letter" style="--i: 6">U</span>
         </div>
 
-        <!-- Robot Character -->
-        <div class="robot-container">
+        <!-- Robot and Enter Button Together -->
+        <div class="robot-enter-container">
             <div class="robot">
                 <div class="robot-antenna">
                     <div class="antenna-ball"></div>
@@ -60,14 +60,11 @@
                 </div>
                 <div class="robot-arm left"></div>
                 <div class="robot-arm right"></div>
+                <div class="robot-platform"></div>
             </div>
             <div class="speech-bubble">
                 <span>Hey!</span>
             </div>
-        </div>
-
-        <!-- Enter Button -->
-        <div class="center-content">
             <button class="enter-btn" id="enter-btn">
                 <span class="btn-text">ENTER</span>
                 <span class="btn-glow"></span>
@@ -97,10 +94,10 @@
                         <div class="card-desc">A decent challenge</div>
                     </div>
                     
-                    <!-- Hard -->
+<!-- Hard -->
                     <div class="difficulty-card" data-level="hard" data-color="red">
                         <div class="card-icon">🔥</div>
-                        <div class="card-title">HARP</div>
+                        <div class="card-title">HARD</div>
                         <div class="card-desc">For puzzle masters</div>
                     </div>
                 </div>
@@ -116,14 +113,24 @@
     <!-- Screen 3: Sudoku Game -->
     <div id="game-screen" class="screen">
         <div class="game-container">
-            <!-- Game Header -->
+<!-- Game Header -->
             <div class="game-header">
                 <div class="timer-container">
                     <i class="fas fa-clock"></i>
                     <span id="timer">00:00</span>
                 </div>
                 <div class="game-title">SUDOKU</div>
-                <div class="difficulty-badge" id="difficulty-badge">EASY</div>
+                <div class="header-right">
+                    <div class="mistakes-container">
+                        <span class="mistakes-label">Mistakes:</span>
+                        <span class="mistakes-count" id="mistakes-count">
+                            <span class="mistake-dot"></span>
+                            <span class="mistake-dot"></span>
+                            <span class="mistake-dot"></span>
+                        </span>
+                    </div>
+                    <div class="difficulty-badge" id="difficulty-badge">EASY</div>
+                </div>
             </div>
 
             <!-- Sudoku Grid -->
@@ -133,7 +140,7 @@
                 </div>
             </div>
 
-            <!-- Number Input -->
+<!-- Number Input -->
             <div class="number-pad">
                 <button class="num-btn" data-num="1">1</button>
                 <button class="num-btn" data-num="2">2</button>
@@ -151,6 +158,14 @@
 
             <!-- Control Buttons -->
             <div class="controls">
+                <button class="control-btn" id="undo-btn">
+                    <i class="fas fa-undo"></i>
+                    <span>UNDO</span>
+                </button>
+                <button class="control-btn" id="notes-btn">
+                    <i class="fas fa-pen"></i>
+                    <span>NOTES</span>
+                </button>
                 <button class="control-btn" id="hint-btn">
                     <i class="fas fa-lightbulb"></i>
                     <span>HINT</span>
