@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku - Rs_ojha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Watermark -->
+    <div class="watermark">Rs_ojha</div>
+
+    <!-- Screen 1: Home/Login Page -->
+    <div id="home-screen" class="screen active">
+        <!-- Floating Background Numbers -->
+        <div class="floating-numbers">
+            <span class="float-num" style="--delay: 0s; --x: 10%; --y: 20%;">1</span>
+            <span class="float-num" style="--delay: 1s; --x: 85%; --y: 15%;">2</span>
+            <span class="float-num" style="--delay: 2s; --x: 20%; --y: 70%;">3</span>
+            <span class="float-num" style="--delay: 0.5s; --x: 75%; --y: 65%;">4</span>
+            <span class="float-num" style="--delay: 1.5s; --x: 50%; --y: 40%;">5</span>
+            <span class="float-num" style="--delay: 2.5s; --x: 15%; --y: 50%;">6</span>
+            <span class="float-num" style="--delay: 3s; --x: 80%; --y: 45%;">7</span>
+            <span class="float-num" style="--delay: 1.8s; --x: 35%; --y: 85%;">8</span>
+            <span class="float-num" style="--delay: 2.2s; --x: 60%; --y: 80%;">9</span>
+        </div>
+
+        <!-- Background Text -->
+        <div class="bg-text">
+            <span class="bg-letter" style="--i: 1">S</span>
+            <span class="bg-letter" style="--i: 2">U</span>
+            <span class="bg-letter" style="--i: 3">D</span>
+            <span class="bg-letter" style="--i: 4">O</span>
+            <span class="bg-letter" style="--i: 5">K</span>
+            <span class="bg-letter" style="--i: 6">U</span>
+        </div>
+
+        <!-- Robot Character -->
+        <div class="robot-container">
+            <div class="robot">
+                <div class="robot-antenna">
+                    <div class="antenna-ball"></div>
+                    <div class="antenna-stick"></div>
+                </div>
+                <div class="robot-head">
+                    <div class="robot-eyes">
+                        <div class="eye left"></div>
+                        <div class="eye right"></div>
+                    </div>
+                    <div class="robot-mouth"></div>
+                </div>
+                <div class="robot-body">
+                    <div class="body-panel">
+                        <div class="panel-light"></div>
+                        <div class="panel-light"></div>
+                        <div class="panel-light"></div>
+                    </div>
+                </div>
+                <div class="robot-arm left"></div>
+                <div class="robot-arm right"></div>
+            </div>
+            <div class="speech-bubble">
+                <span>Hey!</span>
+            </div>
+        </div>
+
+        <!-- Enter Button -->
+        <div class="center-content">
+            <button class="enter-btn" id="enter-btn">
+                <span class="btn-text">ENTER</span>
+                <span class="btn-glow"></span>
+                <span class="btn-ripple"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Screen 2: Difficulty Selection -->
+    <div id="difficulty-screen" class="screen">
+        <div class="difficulty-container">
+            <h1 class="difficulty-title">SELECT DIFFICULTY</h1>
+            
+            <div class="difficulty-scroll">
+                <div class="difficulty-options">
+                    <!-- Easy -->
+                    <div class="difficulty-card" data-level="easy" data-color="pink">
+                        <div class="card-icon">😄</div>
+                        <div class="card-title">EASY</div>
+                        <div class="card-desc">Perfect for beginners</div>
+                    </div>
+                    
+                    <!-- Medium -->
+                    <div class="difficulty-card" data-level="medium" data-color="green">
+                        <div class="card-icon">😐</div>
+                        <div class="card-title">MEDIUM</div>
+                        <div class="card-desc">A decent challenge</div>
+                    </div>
+                    
+                    <!-- Hard -->
+                    <div class="difficulty-card" data-level="hard" data-color="red">
+                        <div class="card-icon">🔥</div>
+                        <div class="card-title">HARP</div>
+                        <div class="card-desc">For puzzle masters</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="confirm-btn" id="confirm-btn">
+                <span>CONFIRM</span>
+                <div class="btn-shine"></div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Screen 3: Sudoku Game -->
+    <div id="game-screen" class="screen">
+        <div class="game-container">
+            <!-- Game Header -->
+            <div class="game-header">
+                <div class="timer-container">
+                    <i class="fas fa-clock"></i>
+                    <span id="timer">00:00</span>
+                </div>
+                <div class="game-title">SUDOKU</div>
+                <div class="difficulty-badge" id="difficulty-badge">EASY</div>
+            </div>
+
+            <!-- Sudoku Grid -->
+            <div class="sudoku-wrapper">
+                <div class="sudoku-grid" id="sudoku-grid">
+                    <!-- 81 cells will be generated by JS -->
+                </div>
+            </div>
+
+            <!-- Number Input -->
+            <div class="number-pad">
+                <button class="num-btn" data-num="1">1</button>
+                <button class="num-btn" data-num="2">2</button>
+                <button class="num-btn" data-num="3">3</button>
+                <button class="num-btn" data-num="4">4</button>
+                <button class="num-btn" data-num="5">5</button>
+                <button class="num-btn" data-num="6">6</button>
+                <button class="num-btn" data-num="7">7</button>
+                <button class="num-btn" data-num="8">8</button>
+                <button class="num-btn" data-num="9">9</button>
+                <button class="num-btn erase-btn" data-num="0">
+                    <i class="fas fa-backspace"></i>
+                </button>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="controls">
+                <button class="control-btn" id="hint-btn">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>HINT</span>
+                </button>
+                <button class="control-btn" id="restart-btn">
+                    <i class="fas fa-redo"></i>
+                    <span>RESTART</span>
+                </button>
+                <button class="control-btn" id="pause-btn">
+                    <i class="fas fa-pause"></i>
+                    <span>PAUSE</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Pause Modal -->
+        <div class="modal" id="pause-modal">
+            <div class="modal-content">
+                <h2>PAUSED</h2>
+                <button class="modal-btn" id="resume-btn">RESUME</button>
+                <button class="modal-btn secondary" id="quit-btn">QUIT</button>
+            </div>
+        </div>
+
+        <!-- Win Modal -->
+        <div class="modal" id="win-modal">
+            <div class="modal-content win-content">
+                <div class="win-icon">🎉</div>
+                <h2>CONGRATULATIONS!</h2>
+                <p>You solved the puzzle!</p>
+                <div class="win-time">
+                    <span>Time:</span>
+                    <span id="final-time">00:00</span>
+                </div>
+                <button class="modal-btn" id="play-again-btn">PLAY AGAIN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
